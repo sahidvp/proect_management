@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_app/controller/form_controller.dart';
-import 'package:project_management_app/utils/theme/colors.dart';
+import 'package:project_management_app/view/form_screen/widget/drop_down.dart';
+import 'package:project_management_app/view/form_screen/widget/project_date.dart';
+import 'package:project_management_app/view/form_screen/widget/submit_button.dart';
 import 'package:provider/provider.dart';
 import 'package:project_management_app/view/form_screen/widget/custom_field.dart';
 
@@ -46,88 +48,25 @@ class FormScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomTextField(
-                      hinText: "Start Date",
-                      controller: formProvider.startDateController,
-                      readOnly: true,
-                      onTap: () => formProvider.selectDate(
-                          context, formProvider.startDateController),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please select a start date';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: CustomTextField(
-                      hinText: "End Date",
-                      controller: formProvider.endDateController,
-                      readOnly: true,
-                      onTap: () => formProvider.selectDate(
-                          context, formProvider.endDateController),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please select an end date';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              projecrDate(formProvider, context),
               const SizedBox(height: 16),
               Consumer<FormProvider>(
                 builder: (context, provider, child) {
-                  return DropdownButtonFormField<String>(
-                    value: provider.selectedStatus,
-                    decoration: InputDecoration(
-                      labelText: 'Status',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey[200],
-                    ),
-                    items: provider.statusOptions.map((String status) {
-                      return DropdownMenuItem<String>(
-                        value: status,
-                        child: Text(status),
-                      );
-                    }).toList(),
-                    onChanged: provider.updateStatus,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please select a status';
-                      }
-                      return null;
-                    },
-                  );
+                  return statusDropDown(provider);
                 },
               ),
               const SizedBox(height: 24),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Appcolors.primary,
-                        shape: RoundedRectangleBorder()),
-                    onPressed: () => formProvider.submitForm(context),
-                    child: Text(
-                      "Submit",
-                      style:
-                          TextStyle(fontSize: 12, color: Appcolors.background),
-                    )),
-              )
+              sumitButton(context, formProvider)
             ],
           ),
         ),
       ),
     );
   }
+
+ 
+
+  
+
+  
 }

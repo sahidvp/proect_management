@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_app/controller/form_controller.dart';
 import 'package:project_management_app/controller/news_provder.dart';
-import 'package:project_management_app/controller/project_controller.dart';
 import 'package:project_management_app/utils/theme/colors.dart';
 import 'package:project_management_app/view/form_screen/form_screen.dart';
-import 'package:project_management_app/view/home_screen.dart';
+import 'package:project_management_app/view/home_screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {

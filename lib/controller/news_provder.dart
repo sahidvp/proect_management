@@ -8,7 +8,8 @@ class NewsProvider extends ChangeNotifier {
 
   Future<void> fetchNews() async {
     final apiKey = 'c030d7aaa47541c6b160cf343fb458bf';
-    final url = 'https://newsapi.org/v2/everything?q=construction&apiKey=$apiKey';
+    final url =
+        'https://newsapi.org/v2/everything?q=construction&apiKey=$apiKey';
 
     try {
       isLoading = true;
@@ -23,7 +24,6 @@ class NewsProvider extends ChangeNotifier {
         throw Exception('Failed to load news');
       }
     } catch (e) {
-      print("Error fetching news: $e");
     } finally {
       isLoading = false;
       notifyListeners();
