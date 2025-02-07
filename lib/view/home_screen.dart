@@ -252,6 +252,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project_management_app/controller/form_controller.dart';
 import 'package:project_management_app/controller/news_provder.dart';
 
@@ -291,8 +292,10 @@ class HomeScreen extends StatelessWidget {
                         options: CarouselOptions(
                           height: 250,
                           autoPlayInterval: const Duration(seconds: 5),
+                          autoPlay: true,
+                          enableInfiniteScroll: true,
                           autoPlayAnimationDuration:
-                              const Duration(milliseconds: 800),
+                              const Duration(milliseconds: 500),
                           viewportFraction: 0.9, // Adjust the visible fraction
                           enlargeCenterPage: true, // Center the active item
                         ),
@@ -373,7 +376,12 @@ class HomeScreen extends StatelessWidget {
                 // Consumer for FormProvider
                 builder: (context, formprovider, child) {
                   return formprovider.projectsList.isEmpty
-                      ? const Center(child: Text("No projects added yet!"))
+                      ? Center(
+                          child: SizedBox(
+                          height: sw * .5,
+                          child: LottieBuilder.asset(
+                              "assets/aniamtion/IbWsO5Z3UV (1).json"),
+                        ))
                       : ListView.builder(
                           itemCount: formprovider.projectsList.length,
                           itemBuilder: (context, index) {
